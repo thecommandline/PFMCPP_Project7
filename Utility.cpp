@@ -17,7 +17,7 @@ std::vector<std::unique_ptr<Item>> makeHelpfulItems(int num)
         items.push_back( std::unique_ptr<HelpfulItem>(new HelpfulItem()) );
     }
     
-    // std::cout << "made " << items.size() << " helpful items" << std::endl;
+    std::cout << "made " << items.size() << " helpful items" << std::endl;
     return items;
 }
 
@@ -30,7 +30,7 @@ std::vector<std::unique_ptr<Item>> makeDefensiveItems(int num)
         items.push_back( std::unique_ptr<DefensiveItem>(new DefensiveItem()) );
     }
     
-    // std::cout << "made " << items.size() << " defensive items" << std::endl;
+    std::cout << "made " << items.size() << " defensive items" << std::endl;
     return items;
 }
 
@@ -98,7 +98,7 @@ void useAttackItem(Character* character, Item* item)
     }
     else if( auto* dragonslayer = dynamic_cast<DragonSlayer*>(character))
     {
-        dragonslayer->boostAttackDamage(item->getBoost() * 10);
+        dragonslayer->boostAttackDamage(item->getBoost() * dragonslayer->getAttackDamage());
         //DragonSlayers get a 10x boost when attacking dragons, from their attack item.
         //so their attack item should boost their attack damage by a factor of 10
         //this means you need to GET the attack damage, multiply it by the item's boost, and BOOST the attackDamage with that multiplied value.  
