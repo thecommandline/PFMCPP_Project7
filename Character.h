@@ -35,6 +35,9 @@ struct Character
     const std::vector<std::unique_ptr<Item>>& getHelpfulItems() const { return helpfulItems; }
     const std::vector<std::unique_ptr<Item>>& getDefensiveItems() const { return defensiveItems; }
     
+    void boostStats( int& initial, int& current, float boost = 1.1f);
+    void printStats();
+
     void boostArmor( int amount )
     {
         armor += amount;
@@ -53,14 +56,6 @@ struct Character
         std::cout << getName() << "'s attack damage level has been boosted to " << attackDamage << std::endl;
     }
 
-    void printStats()
-    {
-        std::cout << getName() << "'s stats: " << std::endl;
-        std::cout << getStats(); //make your getStats() use a function from the Utility.h
-        
-        std::cout << std::endl;
-        std::cout << std::endl;
-    }
 protected:
     std::vector<std::unique_ptr<Item>> defensiveItems;
     std::vector<std::unique_ptr<Item>> helpfulItems;
@@ -71,4 +66,4 @@ private:
     std::unique_ptr<int> initialHitPoints, initialArmorLevel, initialAttackDamage;
     
     void attackInternal(Character& other);
-};
+ };
